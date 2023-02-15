@@ -3331,9 +3331,9 @@ function MOI.modify(
 )
     Lib.XPRSchgcoef(
         model.inner,
-        Ref(Cint(_info(model, c).row - 1)),
-        Ref(Cint(_info(model, chg.variable).column - 1)),
-        Ref(chg.new_coefficient)
+        Cint(_info(model, c).row - 1),
+        Cint(_info(model, chg.variable).column - 1),
+        chg.new_coefficient
     )
     return
 end
