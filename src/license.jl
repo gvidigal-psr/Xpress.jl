@@ -43,11 +43,13 @@ function get_xpauthpath(xpauth_path = "", verbose::Bool = true)
     # user´s lib dir
     push!(candidates, joinpath(dirname(dirname(libxprs)), "bin", XPAUTH))
 
+    @show candidates
     for i in candidates
         if isfile(i)
             if verbose && !haskey(ENV, "XPRESS_JL_NO_INFO")
                 @info("Xpress: Found license file $i")
             end
+            @show i
             return i
         end
     end
