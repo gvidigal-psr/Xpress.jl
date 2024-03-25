@@ -21,6 +21,7 @@ function _get_xpauthpath(xpauth_path = "", verbose::Bool = true)
     # Search in `xpress/lib/../bin/xpauth.xpr`. This is a common location on
     # Windows.
     push!(candidates, joinpath(dirname(libdir), "bin", XPAUTH))
+    @show candidates
     for candidate in candidates
         # We assume a relative root directory of the shared library. If
         # `candidate` is an absolute path, thhen joinpath will ignore libdir and
@@ -32,6 +33,7 @@ function _get_xpauthpath(xpauth_path = "", verbose::Bool = true)
             if verbose && !haskey(ENV, "XPRESS_JL_NO_INFO")
                 @info("Xpress: Found license file $filename")
             end
+            @show filename
             return filename
         end
     end
