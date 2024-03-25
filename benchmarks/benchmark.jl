@@ -1,3 +1,8 @@
+# Copyright (c) 2016: Joaquim Garcia, and contributors
+#
+# Use of this source code is governed by an MIT-style license that can be found
+# in the LICENSE.md file or at https://opensource.org/licenses/MIT.
+
 using Xpress
 
 function print_help()
@@ -17,6 +22,7 @@ function print_help()
         julia benchmark.jl --compare master
         julia benchmark.jl --compare approach_1
     """)
+    return
 end
 
 if length(ARGS) != 2
@@ -26,11 +32,17 @@ else
     const suite = Benchmarks.suite(() -> Xpress.Optimizer())
     if ARGS[1] == "--new"
         Benchmarks.create_baseline(
-            suite, ARGS[2]; directory = @__DIR__, verbose = true
+            suite,
+            ARGS[2];
+            directory = @__DIR__,
+            verbose = true,
         )
     elseif ARGS[1] == "--compare"
         Benchmarks.compare_against_baseline(
-            suite, ARGS[2]; directory = @__DIR__, verbose = true
+            suite,
+            ARGS[2];
+            directory = @__DIR__,
+            verbose = true,
         )
     else
         print_help()
