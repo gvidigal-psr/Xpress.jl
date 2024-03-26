@@ -3,11 +3,6 @@
 # Use of this source code is governed by an MIT-style license that can be found
 # in the LICENSE.md file or at https://opensource.org/licenses/MIT.
 
-function touchlic(path)
-    f = open(path)
-    return close(f)
-end
-
 function _get_xpauthpath(xpauth_path = "", verbose::Bool = true)
     # The directory of the xprs shared object. This is the root from which we
     # search for licenses.
@@ -60,7 +55,7 @@ function userlic(;
     # obvious why we need to touch the license file, but the code has done this
     # since https://github.com/jump-dev/Xpress.jl/pull/9.
     path_lic = _get_xpauthpath(xpauth_path, verbose)
-    touchlic(path_lic)
+    # touch(path_lic)
     # Pre-allocate storage for the license integer. For backward compatibility,
     # we use `Vector{Cint}`, because some users may have `liccheck` functions
     # which rely on this.
